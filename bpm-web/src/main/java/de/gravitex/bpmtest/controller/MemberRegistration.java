@@ -47,14 +47,7 @@ public class MemberRegistration {
       log.info("Registering " + newMember.getName());
       em.persist(newMember);
       memberEventSrc.fire(newMember);
-      initNewMember();
-      
-      //start process
-      if (engineProvider != null) {
-    	  engineProvider.startProcessInstance("verySimpleProcess", null);
-      } else {
-    	  System.out.println("engineProvider NULL");
-      }
+      initNewMember();      
    }
 
    @PostConstruct

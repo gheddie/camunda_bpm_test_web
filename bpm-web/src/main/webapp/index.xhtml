@@ -36,13 +36,17 @@
                      for="phoneNumber" errorClass="invalid" /></td>
             </tr>
          </table>
-         <p>
+         <p>        
             <h:commandButton id="register"
                action="#{memberRegistration.register}" value="Register" />
             <h:outputText value=" Registered!"
                rendered="#{facesContext.postback and empty facesContext.messageList}"
                style="color: green;" />
          </p>
+      </h:form>
+      <h:form>
+            <h:commandButton id="startbpmn"
+               action="#{bpmnStarter.start}" value="Start" />      
       </h:form>
       <h2>Members</h2>
       <h:panelGroup rendered="#{empty members}">
