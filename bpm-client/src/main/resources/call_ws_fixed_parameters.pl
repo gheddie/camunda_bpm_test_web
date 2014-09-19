@@ -1,0 +1,1 @@
+system("java de.gravitex.bpmtest.PerlWebServiceConnectorFixedParameters")

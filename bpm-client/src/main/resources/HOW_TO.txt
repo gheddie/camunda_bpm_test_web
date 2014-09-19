@@ -1,0 +1,9 @@
++ Java (1.7.0_60) installieren
+	+ JAVA_HOME setzen (C:\Java\jdk1.7.0_60)
+	+ JAVA_HOME in Path (%JAVA_HOME%;%JAVA_HOME%\bin;
+)
++ Camunda JBoss (7.1.0-Final) installieren
+	+ ggf. Beispiel-Prozesse raus
++ PostgreSQL installieren (9.2, 64-bit)
+	+ pw: pg[wi]
+	+ port: 5432

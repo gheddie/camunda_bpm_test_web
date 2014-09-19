@@ -1,0 +1,35 @@
+@startuml
+
+package CarPool {
+	class StaffCar {
+		licenceTag :: String
+		numberOfSeats :: int
+		fixForEmployee : boolean
+	}
+	note left of StaffCar : fixForEmployee\n---\nFest an einen Mitarbeiter gebunden
+	
+	class StaffCarReservation {
+		requester :: Employee
+		staffCar :: StaffCar
+		fromDate :: dateTime
+		untilDate :: dateTime
+		reservationState :: ReservationState
+	}
+}
+
+class Employee {
+	employeeCode : String
+}
+
+class Department {
+	name : String
+	head : Employee
+}
+
+StaffCarReservation "0..*" -- "1" StaffCar
+StaffCarReservation "1" -- "1" Employee
+
+Employee "*" -- "*" Department : membership
+Employee "1" -- "1" Department : lead
+
+@enduml

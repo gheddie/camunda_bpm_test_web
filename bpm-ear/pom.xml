@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.gravitex.bpmtest</groupId>
+		<artifactId>bpm-build</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>bpm-ear</artifactId>
+	<packaging>ear</packaging>
+
+	<!-- DEPENDENCIES -->
+	<dependencies>
+		<dependency>
+			<groupId>de.gravitex.bpmtest</groupId>
+			<artifactId>bpm-ejb</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>de.gravitex.bpmtest</groupId>
+			<artifactId>bpm-process-ref</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>de.gravitex.bpmtest</groupId>
+			<artifactId>bpm-web</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+	<!-- BUILD SETTINGS -->
+	<build>
+		<plugins>
+			<!-- CONFIGURE EAR CREATION -->
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<modules>
+						<ejbModule>
+							<groupId>de.gravitex.bpmtest</groupId>
+							<artifactId>bpm-ejb</artifactId>
+						</ejbModule>
+						<webModule>
+							<groupId>de.gravitex.bpmtest</groupId>
+							<artifactId>bpm-process-ref</artifactId>
+						</webModule>
+						<webModule>
+							<groupId>de.gravitex.bpmtest</groupId>
+							<artifactId>bpm-web</artifactId>
+						</webModule>						
+					</modules>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Dependencies>org.camunda.bpm.camunda-engine</Dependencies>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
