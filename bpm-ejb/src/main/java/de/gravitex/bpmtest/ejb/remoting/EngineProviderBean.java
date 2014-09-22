@@ -7,11 +7,14 @@ import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.task.Task;
+
+import de.gravitex.bpmtest.ejb.util.MailHelper;
 
 @Stateless(name = "EngineProvider")
 @Local(EngineProvider.class)
@@ -27,6 +30,15 @@ public class EngineProviderBean implements EngineProvider {
 	public void startProcessInstance(String processDefinitionKey, Map<String, Object> variables) {
 		System.out.println("starting process instance by key : '"+processDefinitionKey+"' [process engine='"+processEngine+"'].");
 		processEngine.getRuntimeService().startProcessInstanceByKey(processDefinitionKey, variables);
+		pollTasks();
+	}
+
+	private void pollTasks() {
+		try {
+			MailHelper.sendEmail("noreply@bcc.de", "stefan.schulz.1976@googlemail.com", null, null, "subject", "body");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public List<Task> queryTasks() {

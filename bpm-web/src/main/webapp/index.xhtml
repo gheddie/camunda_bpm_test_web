@@ -44,10 +44,11 @@
                style="color: green;" />
          </p>
       </h:form>
+      
       <h:form>
-            <h:commandButton id="startbpmn"
-               action="#{bpmnStarter.start}" value="Start" />      
-      </h:form>
+      	<h:commandLink action="taskresolver/requestPoolCar?faces-redirect=true" value="Pool-Fahrzeug beantragen" />
+	  </h:form>      	
+      
       <h2>Members</h2>
       <h:panelGroup rendered="#{empty members}">
          <em>No registered members.</em>
